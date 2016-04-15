@@ -19,7 +19,7 @@ class SparkTwitterToneBreakdown extends Component{
         return {
             id: 'sparkTwitter.getToneBreakdown',
             params: {
-            	topic: "topHashTags.toneScores"
+            	
             }
         };
     }
@@ -76,7 +76,10 @@ class SparkTwitterToneBreakdown extends Component{
 	        x : {
 	            type:'categorized'
 	        }
-    	  }
+    	  },
+    	  legend: {
+			  position: 'right'
+		  }
       });
 
       window.addEventListener('resize', this.onResize.bind(this));
