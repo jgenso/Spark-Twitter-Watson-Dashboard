@@ -37,7 +37,7 @@ class SparkTwitterToneBreakdown extends Component{
     
     getChartData(){
     	var retData = {"columns": this.state.colData, "unload":[]};
-    	
+
     	//Unload any columns that is not part of the colData
     	var data = retData.columns;
     	_.forEach( this.chart.data(), function(t){
@@ -76,10 +76,7 @@ class SparkTwitterToneBreakdown extends Component{
 	        x : {
 	            type:'categorized'
 	        }
-    	  },
-    	  legend: {
-			  position: 'right'
-		  }
+    	  }
       });
 
       window.addEventListener('resize', this.onResize.bind(this));
