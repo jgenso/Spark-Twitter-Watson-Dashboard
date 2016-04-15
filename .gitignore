@@ -29,3 +29,6 @@ node_modules
 app/bower_components
 
 config
+.idea/*
+
+Spark-Twitter-Watson-Dashboard.iml
