@@ -37,6 +37,7 @@ class SparkTwitterToneBreakdown extends Component{
     
     getChartData(){
     	var retData = {"columns": this.state.colData, "unload":[]};
+    	console.log(retData);
     	
     	//Unload any columns that is not part of the colData
     	var data = retData.columns;
@@ -96,7 +97,7 @@ class SparkTwitterToneBreakdown extends Component{
     render() {
     	return (
     		<div style={{height:'100%'}}>
-	    		<div className="chart-title-text">Trending sentiments</div>
+	    		<div className="chart-title-text">World Emotions</div>
 	            <div ref="chartWrapper" className="sparkTwitter-toneBreakDown-chart"></div>
 	        </div>
         );
