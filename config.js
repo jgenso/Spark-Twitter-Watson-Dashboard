@@ -1,4 +1,4 @@
-ulp// Load environment variables from .env file if available
+// Load environment variables from .env file if available
 require('dotenv').load();
 
 var config = {
