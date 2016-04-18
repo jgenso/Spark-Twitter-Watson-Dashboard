@@ -37,8 +37,7 @@ class SparkTwitterToneBreakdown extends Component{
     
     getChartData(){
     	var retData = {"columns": this.state.colData, "unload":[]};
-    	console.log(retData);
-    	
+
     	//Unload any columns that is not part of the colData
     	var data = retData.columns;
     	_.forEach( this.chart.data(), function(t){
