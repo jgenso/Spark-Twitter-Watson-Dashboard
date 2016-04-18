@@ -61,12 +61,14 @@ class SparkTwitterToneBreakdown extends Component{
 
     componentDidMount() {
       var chartElement = React.findDOMNode(this.refs.chartWrapper);
+      var groups = _.flatMap(_.tail(this.state.colData), function(item) {return _.head(item); });
       this.chart = c3.generate({
     	  bindto: chartElement,
     	  data: {
     		  x:'x',
     		  columns: this.state.colData,
-    		  type : 'bar'
+    		  type : 'bar',
+    		  groups: groups
     	  },
     	  bar: {
 			width: {
