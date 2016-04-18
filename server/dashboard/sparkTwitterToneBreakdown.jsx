@@ -29,8 +29,10 @@ class SparkTwitterToneBreakdown extends Component{
     }
 
     componentDidUpdate() {
-    	if ( this.state.colData.length > 0 ){
-    		this.chart.load(this.getChartData());
+    	if ( this.state.colData.length > 0 ) {
+    	    var d = this.getChartData();
+    		this.chart.load(d);
+    		this.chart.groups = _.flatMap(d.columns, function(item) {return _.head(item); });
     		this.onResize();
     	}
     }
@@ -78,10 +80,7 @@ class SparkTwitterToneBreakdown extends Component{
 	        x : {
 	            type:'categorized'
 	        }
-    	  },
-    	  legend: {
-			  position: 'right'
-		  }
+    	  }
       });
 
       window.addEventListener('resize', this.onResize.bind(this));
