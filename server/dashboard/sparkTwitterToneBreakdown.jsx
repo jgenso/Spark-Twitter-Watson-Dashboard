@@ -30,9 +30,10 @@ class SparkTwitterToneBreakdown extends Component{
 
     componentDidUpdate() {
     	if ( this.state.colData.length > 0 ) {
+    	    console.log(this.chart);
     	    var d = this.getChartData();
     		this.chart.load(d);
-    		this.chart.groups = _.flatMap(d.columns, function(item) {return _.head(item); });
+    		//this.chart.groups = [_.flatMap(_.tail(d.columns), function(item) {return _.head(item); })];
     		this.onResize();
     	}
     }
@@ -49,6 +50,23 @@ class SparkTwitterToneBreakdown extends Component{
     			retData.unload.push(t.id);
     		}
     	});
+
+    	var res = [];
+        _.each(retData.columns, function(item) {
+          _.each(_.tail(item), function(elem, idx) {
+            if (res[idx] !== undefined) {
+              res[idx] = res[idx] + elem;
+            } else {
+              res[idx] = 0;
+            }
+          });
+        });
+
+        var items = [_.head(retData.columns)].concat([["Totals"].concat(res)]);
+
+        console.log(items);
+
+    	retData.columns = items;
     	
     	return retData;
     }
@@ -62,14 +80,12 @@ class SparkTwitterToneBreakdown extends Component{
 
     componentDidMount() {
       var chartElement = React.findDOMNode(this.refs.chartWrapper);
-      var groups = _.flatMap(_.tail(this.state.colData), function(item) {return _.head(item); });
       this.chart = c3.generate({
     	  bindto: chartElement,
     	  data: {
     		  x:'x',
     		  columns: this.state.colData,
-    		  type : 'bar',
-    		  groups: groups
+    		  type : 'bar'
     	  },
     	  bar: {
 			width: {
